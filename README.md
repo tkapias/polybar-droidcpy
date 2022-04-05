@@ -1,5 +1,5 @@
 # droidcpy
-**A [Polybar](https://github.com/polybar/polybar) script** to control your **Android device remote control services**. Handling, Mirror display, Audio, Webcam. Using scrcpy, sndcpy and v4l2loopback with IP Webcam.
+**A [Polybar](https://github.com/polybar/polybar) script** to control your **Android device remote control services**. Mirror display with handling, Audio, Webcam. Using scrcpy, sndcpy and v4l2loopback with IP Webcam.
 
 
 ![image](https://user-images.githubusercontent.com/45816387/161807714-bcdeffbe-2a5b-4923-8e07-8b684e884d0b.png)
@@ -10,7 +10,7 @@
 > The configurations proposed by this repository are **not adapted to all operating systems or easily customized** without reading some code.
 > It is **dedicated to advanced Android/Linux** users who run at least **Polybar and Systemd**, ideally i3wm too.
 > 
-> You can use the Systemd services individually with any other launcher too.
+> You can use the Systemd services wthout Polybar too, but need to find another solution to monitor the status of the services and toggle their state.
 
 
 ## Features
