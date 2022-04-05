@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # name of the android device, check with "adb wait-for-device devices -l"
-my_device="Redmi_7A"
+my_device="MyDeviceNameOrAWildcard"
 
 # test the status of each systemd services
 test_scrcpy=$(systemctl --user is-active scrcpy.service)
