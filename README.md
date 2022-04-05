@@ -73,16 +73,16 @@
   - [Polybar](https://github.com/polybar/polybar): beautiful and highly customizable status bars.
     - On Debian and Ubuntu: `apt install polybar`
     - On Arch Linux: `pacman -S polybar`
-    - Incorporate this script as a module in one of your bars.
+    - You need to customize your config.ini to incorporate droidcpy as a module.
   - [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts): Nerd Fonts takes popular programming fonts and adds a bunch of Glyphs.
-    - polybar-droidcpy use icons provided by a Nerd Font, you need at any of them, or to modify the icons in [polybar/scripts/droidcpy.sh](https://github.com/tkapias/polybar-droidcpy/blob/main/polybar/scripts/droidcpy.sh).
+    - droidcpy use icons provided by a Nerd-Fonts font, you need one, or to modify the icons in [polybar/scripts/droidcpy.sh](https://github.com/tkapias/polybar-droidcpy/blob/main/polybar/scripts/droidcpy.sh).
   - [Systemd](https://www.freedesktop.org/software/systemd/man/systemd.service.html): system and service manager for Linux operating systems.
     - Your desktop operating system probably works on this manager. If not, it's complicated to install it.
 
 ### Optional
 
   - [i3wm](https://github.com/i3/i3): a tiling window manager for X11.
-    - It's not mandatory but use a fork with more features: [i3wm-gaps](https://github.com/Airblader/i3)
+    - It's not mandatory but I use a fork with more features: [i3wm-gaps](https://github.com/Airblader/i3)
 
 
 ## Installation
