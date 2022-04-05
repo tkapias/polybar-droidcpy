@@ -10,7 +10,7 @@
 > The configurations proposed by this repository are **not adapted to all operating systems or easily customized** without reading some code.
 > It is **dedicated to advanced Android/Linux** users who run at least **Polybar and Systemd**, ideally i3wm too.
 > 
-> You can use the Systemd services wthout Polybar too, but need to find another solution to monitor the status of the services and toggle their state.
+> You can use the Systemd services wthout Polybar from the terminal, but it's cumbersome to monitor the status of the services and toggle their state from the command line.
 
 
 ## Features
