@@ -1,0 +1,28 @@
+[Unit]
+Description=Sndcpy - Android device remote-speaker
+
+[Service]
+Type=simple
+# Wait 4 second for the device on ADB and check if the boot is completed
+ExecStartPre=timeout 4 adb wait-for-device shell getprop sys.boot_completed
+# Add custom permission to the sndcpy app
+ExecStartPre=adb shell appops set com.rom1v.sndcpy PROJECT_MEDIA allow
+# Disable battery optimization for the sndcpy app
+ExecStartPre=adb shell dumpsys deviceidle whitelist +com.rom1v.sndcpy
+# Add a port forwarding bettween the app and a local port
+ExecStartPre=adb forward tcp:28200 localabstract:sndcpy
+# Launch the sndcpy app on the device
+ExecStartPre=adb shell am start com.rom1v.sndcpy/.MainActivity
+ExecStartPre=sleep 2
+# launch the stream with ffplay
+ExecStart=ffplay -hide_banner -loglevel error -nodisp -volume 100 -f s16le -probesize 32 -ac 2 -ar 48000 -acodec pcm_s16le tcp://localhost:28200
+# force kill the app on the device after ffplay stop
+ExecStopPost=adb shell am force-stop com.rom1v.sndcpy
+# remove the port forwarding after ffplay stop
+ExecStopPost=adb forward --remove tcp:28200
+# force usage of a QUIT signal to stop ffplay
+SuccessExitStatus=QUIT
+KillSignal=3
+Restart=no
+StandardOutput=append:%h/.logs/sndcpy.log
+StandardError=append:%h/.logs/sndcpy.error.log

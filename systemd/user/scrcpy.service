@@ -1,0 +1,14 @@
+[Unit]
+Description=Scrcpy - Android device remote-screen control
+
+[Service]
+Type=simple
+# Wait 4 second for the device on ADB and check if the boot is completed
+ExecStartPre=timeout 4  adb wait-for-device shell getprop sys.boot_completed
+# Disable auto rotation
+ExecStartPre=adb shell content insert --uri content://settings/system --bind name:s:accelerometer_rotation --bind value:i:0
+# Start scrcpy resized to 1024px, with a 2M bitrate and keyboard support
+ExecStart=scrcpy --max-size 1024 --bit-rate 2M --max-fps 25 --encoder 'OMX.qcom.video.encoder.avc' --display-buffer=50 --lock-video-orientation=0 --window-borderless --stay-awake --hid-keyboard
+Restart=no
+StandardOutput=append:%h/.logs/scrcpy.log
+StandardError=append:%h/.logs/scrcpy.error.log

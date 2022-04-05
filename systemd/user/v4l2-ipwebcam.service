@@ -1,0 +1,30 @@
+[Unit]
+Description=v4l2-ipwebcam - Android device webcam by IP
+
+[Service]
+Type=simple
+# Wait 4 second for the device on ADB and check if the boot is completed
+ExecStartPre=timeout 4 adb wait-for-device shell getprop sys.boot_completed
+# Add a port forwarding bettween the app and a local port
+ExecStartPre=adb forward tcp:28300 tcp:8082
+# Stop the ipwebcam app on the device
+ExecStartPre=adb shell am force-stop com.pas.webcam.pro
+ExecStartPre=sleep 2
+# Launch the ipwebcam app on the device
+ExecStartPre=adb shell monkey -p com.pas.webcam.pro 1 >> /dev/null
+# Launch the server on the ipwebcam app
+ExecStartPre=adb shell input roll 10 100
+ExecStartPre=adb shell input keyevent 66
+ExecStartPre=sleep 2
+# Start the stream forwarding from ipwebcam to /dev/video0 with ffmpeg
+ExecStart=ffmpeg -i http://localhost:28300/videofeed -vf format=yuv420p -f v4l2 /dev/video0
+# force kill the app on the device after ffmpeg stop
+ExecStopPost=adb shell am force-stop com.pas.webcam.pro
+# remove the port forwarding after ffmpeg stop
+ExecStopPost=adb forward --remove tcp:28300
+# force usage of a INT signal to stop ffplay and accept 255 code
+SuccessExitStatus=255
+KillSignal=2
+Restart=no
+StandardOutput=append:%h/.logs/v4l2-ipwebcam.log
+StandardError=append:%h/.logs/v4l2-ipwebcam.error.log
