@@ -1,5 +1,5 @@
-# polybar-droidcpy
-[Polybar](https://github.com/polybar/polybar) script - Status and controls for remote streams from Android devices with scrcpy/sndcpy/v4l2loopback
+# droidcpy
+**A [Polybar](https://github.com/polybar/polybar) script** to control your **Android device remote control services**. Handling, Mirror display, Audio, Webcam. Using scrcpy, sndcpy and v4l2loopback with IP Webcam.
 
 
 ![image](https://user-images.githubusercontent.com/45816387/161807714-bcdeffbe-2a5b-4923-8e07-8b684e884d0b.png)
