@@ -30,12 +30,12 @@
 ## Limitations
 
   - My testing device was rooted and runs on Android 11, but it should work **without root** and **at least from Android 10**.
-  - Clicking on a failed service try to start it again, not to stop it.
-  - If you **disconnect the device** while a service was running, it **may not stop but switch to failed**, you will have to reconnect the device and start/stop cleanly before disconnecting again. Or the Red icon will stay visible.
+  - Clicking on a failed service try to start it again, not to stop it:
+    - If you **disconnect the device** while a service is running, it **may not stop but switch to failed**, you will have to reconnect the device and start/stop cleanly before disconnecting again. Or the Red icon will stay visible.
   - I choose to limit the bitrate (2M) and the resolution (1024) in the parameters to get the best perfs, you can tweak the exec command in the systemd service files.
   - On some device the orientation of the Webcam may be wrong, you can change those settings in the IP Webcam app or in the systemd service file.
   - As it was a quick project and the scripts are commented, I did not centralize options, device name or output colors. **There is no central ENV or attributes**, you wil have to find it in the code.
-  - The scripts are **not written to work when there is more than 1 device connected on ADB**. And **you have to specify the name of your device** in the script, or use a wildcard, but then any adb device will show the panel.
+    - The scripts are **not written to work when there is more than 1 device connected on ADB**. And **you have to specify the name of your device** in the script, or use a wildcard, but then any adb device will show the panel.
   - I did not find any good open source solution for the IP webcam application on Android, it's possible to use [Open Camera](https://github.com/almalence/OpenCamera) with scrcpy and v4l2loopback to forward the picture from the screen but it's more limited. But [IP Webcam Pro](https://play.google.com/store/apps/details?id=com.pas.webcam.pro) seems to be a clean and serious application.
 
 
