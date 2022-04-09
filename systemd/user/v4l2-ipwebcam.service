@@ -20,6 +20,8 @@ ExecStartPre=sleep 2
 ExecStart=ffmpeg -i http://localhost:28300/videofeed -vf format=yuv420p -f v4l2 /dev/video0
 # force kill the app on the device after ffmpeg stop
 ExecStopPost=adb shell am force-stop com.pas.webcam.pro
+# Disable auto rotation after ffmpeg stop
+ExecStopPost=adb shell content insert --uri content://settings/system --bind name:s:accelerometer_rotation --bind value:i:0
 # remove the port forwarding after ffmpeg stop
 ExecStopPost=adb forward --remove tcp:28300
 # force usage of a INT signal to stop ffplay and accept 255 code
